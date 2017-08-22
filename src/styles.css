@@ -1,0 +1,24 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  text-decoration: none;
+  outline: none;
+}
+body,
+a {
+  font-family: calibri;
+  font-size: 14px;
+  font-weight: normal;
+  color: #3B424D;
+}
+body{
+  /* background: url('assets/images/backgroundImg.png') no-repeat center center;
+   background-size: cover;*/
+}
+
+
+
+
+

@@ -1,0 +1,15 @@
+.navbar{
+    min-height: 70px;
+}
+.navbar-brand{
+    height: 70px;
+}
+.heading{text-align:center}
+.heading1{text-align:center;background-color:aliceblue;font-size:17px;}
+.logo{width:100px}
+@media (min-width: 768px){
+    .navbar-nav>li>a {
+        padding-top: 25px;
+        padding-bottom: 25px;
+    }
+}

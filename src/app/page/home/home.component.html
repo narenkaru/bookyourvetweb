@@ -1,0 +1,93 @@
+<nav class="navbar navbar-default" [hidden]="type==user">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><img src="assets/images/BookYourVetLogo.png" class="logo"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">            
+      <ul class="nav navbar-nav navbar-right">
+       
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Welcome {{doctorname}}<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a (click)="logout()">Logout</a></li>
+           </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="row" [hidden]="type==user">
+  <div class="col-md-2">
+  </div>
+  <div class="col-md-4">
+    <select class="form-control" id="sel1" (change)="onItemChange()" [(ngModel)]="category">
+      <option value="" disabled selected style="display: none;">Choose Search Catagory</option>
+      <option *ngFor=" let value of filterItem" value="{{value.id}}">{{value.name}}</option>
+    </select>
+  </div>
+    <div class="col-md-4">
+      <div class="form-group">
+      <input type="text" id="con" (keyup)="dateby()" placeholder="Search for Date.." class="choose form-control" style="display:none">
+      <input type="text" id="cit" (keyup)="clName()" placeholder="Search for Client Name.." class="choose form-control" style="display:none">
+      <input type="text" id="pet" (keyup)="petName()" placeholder="Search for Client Pet Name.." class="choose form-control" style="display:none">
+      <input type="text" id="age" (keyup)="species()" placeholder="Search for Species.." class="choose form-control" style="display:none">
+      <input type="text" id="ser" (keyup)="problem()" placeholder="Search for Problem.." class="choose form-control" style="display:none">
+      </div>
+  </div>
+  <div class="col-md-2">
+  </div>
+</div>
+
+<div class="panel panel-default" [hidden]="type==user">
+    <table id="myTable">
+      <tr>
+          <th class="heading1" colspan="8">My Appointment</th>
+        </tr>
+      <tr class="header">
+          <th>No</th>
+          <th>Date Time</th>
+          <th>Client Name</th>
+          <th>Pet Name</th>
+          <th>Species</th>
+          <th>Problem</th>
+          <th>Contact No</th>
+          <th>Action</th>
+      </tr>
+      <tr *ngFor= "let user of appointments; let i = index;">
+          <td>{{i+1}}</td>
+          <td>{{user.date+","+ user.time}}</td>
+          <td>{{user.username}}</td>
+          <td>{{user.name}}</td>
+          <td>{{user.selectPet}}</td>
+          <td>{{user.additionalComments}}</td>
+          <td>{{user.phoneNo}}</td>
+          <td>
+            <button  class="{{user.status ? 'btn btn-success' : 'btn btn-danger'}}" (click)="teatment(i)">{{user.status ? "Treatment Done" : "Treatment" }}</button>
+           <!-- <button *ngIf="!user.status"  class="btn btn-info" (click)="nextFollowup(i)">Next follow up date</button>-->
+          </td>
+        </tr>
+    </table>
+</div>
+<!--
+<popup  #popup5 (confirmClick)="adduserDetails()">
+          <form class="form-horizontal popup_from">
+            <div>
+                <input format="dd/MM/yyyy" type="date" [ngModelOptions]="{standalone: true}" [(ngModel)]="nextfollowupdate" class="form-control" placeholder="Next followup Date" aria-describedby="basic-addon1" (change)="changeValue()">
+            </div>
+              <select [(ngModel)]="selectedTime" (change)="changeOption()" [ngModelOptions]="{standalone: true}">
+                <option [ngValue]="Select">Select</option>
+                <option *ngFor="let c of docTime" [ngValue]="c">{{c}}</option>
+              </select>
+        </form>      
+  </popup>
+    -->
+
